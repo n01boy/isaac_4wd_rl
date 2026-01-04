@@ -1,0 +1,98 @@
+# 4WD Vehicle Configuration for Isaac Lab
+# Based on typical Raspberry Pi 4WD robot specifications
+
+vehicle:
+  name: "4wd_robot"
+  mass: 1.8  # kg (including Raspberry Pi, battery, sensors)
+
+  # Chassis dimensions (meters)
+  chassis:
+    length: 0.18
+    width: 0.15
+    height: 0.08
+    mass: 1.0  # kg
+
+  # Wheel specifications
+  wheel:
+    radius: 0.033  # m (66mm diameter wheels are common)
+    width: 0.026   # m
+    mass: 0.05     # kg per wheel
+
+  # Wheelbase and track
+  geometry:
+    wheelbase: 0.14   # m (front-rear distance)
+    track_width: 0.13 # m (left-right distance)
+    ground_clearance: 0.02  # m
+
+  # Motor specifications
+  motor:
+    max_velocity: 10.0  # rad/s (corresponds to ~1m/s linear speed)
+    max_torque: 0.5     # Nm
+    gear_ratio: 48.0    # Typical for hobby motors
+
+  # Physical properties
+  physics:
+    friction_coefficient: 0.8
+    rolling_resistance: 0.01
+    restitution: 0.1  # Bounciness
+
+# LiDAR Sensor Configuration
+lidar:
+  type: "rplidar_a1"  # Or compatible
+  resolution: 360  # Number of scan points (1 degree resolution)
+  # Alternative: 36 for 10 degree resolution
+
+  range:
+    min: 0.15  # m
+    max: 12.0  # m
+
+  scan_rate: 10  # Hz
+
+  # Mounting position (relative to chassis center)
+  position:
+    x: 0.0
+    y: 0.0
+    z: 0.12  # Mounted on top of chassis
+
+  # Domain Randomization parameters
+  noise:
+    enabled: true
+    std_dev_percentage: 0.035  # 3.5% noise (2-5% range)
+
+# Domain Randomization for Sim-to-Real
+domain_randomization:
+  enabled: true
+
+  friction:
+    min: 0.64  # 0.8 * 0.8
+    max: 0.96  # 0.8 * 1.2
+
+  motor_delay:
+    min: 0.020  # 20ms
+    max: 0.050  # 50ms
+
+  mass_variation:
+    min: 0.9   # -10%
+    max: 1.1   # +10%
+
+# Training Environment
+environment:
+  num_envs: 10  # Parallel environments
+  episode_length: 500  # steps
+
+  # Spawn area
+  spawn_area:
+    size: 10.0  # 10m x 10m arena
+
+  # Obstacles
+  obstacles:
+    enabled: true
+    count_range: [5, 15]  # Random number per episode
+    size_range: [0.1, 0.5]  # meters
+
+# Reward function weights
+rewards:
+  forward_progress: 1.0
+  collision_penalty: -100.0
+  smooth_steering_penalty: -0.1
+  timeout_penalty: -10.0

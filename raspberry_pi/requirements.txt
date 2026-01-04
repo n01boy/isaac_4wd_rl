@@ -1,0 +1,21 @@
+# Raspberry Pi Dependencies for 4WD Robot Inference
+
+# ONNX Runtime for model inference
+# Use the appropriate version for your Pi architecture
+# For Raspberry Pi 4/5 (ARM64):
+onnxruntime>=1.15.0
+
+# For older Pi models, you may need to build from source or use:
+# pip install onnxruntime-armv7l  # For 32-bit ARM
+
+# Core numerical libraries
+numpy>=1.24.0
+
+# LiDAR sensor interface
+rplidar-roboticia>=0.9.2
+
+# GPIO control for motors
+RPi.GPIO>=0.7.1
+
+# Optional: for better performance monitoring
+psutil>=5.9.0

@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Isaac Lab / Isaac Sim
+_isaac_sim/
+_build/
+*.usd
+*.usda
+*.usdc
+!assets/robots/*.usd
+!assets/robots/*.urdf
+
+# Training artifacts
+logs/
+runs/
+checkpoints/
+models/*.pth
+models/*.pt
+*.ckpt
+
+# Keep ONNX models
+!models/*.onnx
+
+# TensorBoard
+events.out.tfevents.*
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data
+data/
+datasets/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
