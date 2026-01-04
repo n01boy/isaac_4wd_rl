@@ -17,7 +17,7 @@
 cd ~/workspace/isaac_4wd_rl
 
 # 必要なファイルをzipに圧縮
-zip -r isaac_4wd_project.zip \
+zip -r isaac_4wd_rl.zip \
     assets/ \
     envs/ \
     scripts/ \
@@ -48,7 +48,7 @@ zip -r isaac_4wd_project.zip \
    - エラーが出なければ成功
 
 2. **セル5**: プロジェクトファイルのアップロード
-   - `isaac_4wd_project.zip`をアップロード
+   - `isaac_4wd_rl.zip`をアップロード
    - または個別にファイルをアップロード
 
 3. **セル6-9**: 環境のテスト
