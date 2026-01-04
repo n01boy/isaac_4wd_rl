@@ -6,6 +6,7 @@ for eventual deployment on Raspberry Pi hardware.
 """
 
 import math
+import os
 import torch
 import numpy as np
 from typing import Dict, Tuple
@@ -53,7 +54,10 @@ class FourWDSceneCfg(InteractiveSceneCfg):
     robot: ArticulationCfg = ArticulationCfg(
         prim_path="{ENV_REGEX_NS}/Robot",
         spawn=sim_utils.UrdfFileCfg(
-            asset_path="/workspace/isaac_4wd_rl/assets/robots/4wd_vehicle.urdf",
+            asset_path=os.path.join(
+                os.environ.get("PROJECT_PATH", os.getcwd()),
+                "assets/robots/4wd_vehicle.urdf"
+            ),
             rigid_props=sim_utils.RigidBodyPropertiesCfg(
                 disable_gravity=False,
                 max_depenetration_velocity=1.0,
